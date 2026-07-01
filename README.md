@@ -16,8 +16,7 @@ A lightweight, header-only, RAW C++ network library built directly on top of the
 #include "rapsocket.hpp"
 
 int main() {
-    // Drop the text and forget about the server's response!
-    PostTextAndForget("YOUR_URL_HERE", "Hello from RapSocket!");
+    PostTextAndForget("YOUR_URL_HERE", "Hello from RapSocket!","YOUR_USER_AGENT",443); // 443 = port
 }
 ```
 ## 📜 License
