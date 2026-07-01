@@ -29,7 +29,7 @@ Here is what's coming next in the future versions of RapSocket:
 
 [x] v1.1.0 - POST with response handling (PostTextAndListen) – reading and buffer allocation for server response.
 
-[ ] v2.0.0 - Full GET request support – fetching data from any server.
+[x] v2.0.0 - Full GET request support – fetching data from any server.
 
 [ ] v3.0.0 - No-STD / Pure Native WinAPI version – completely removing <string> and modern C++ standard library dependencies for malware analysts and low-level enthusiasts (executable size < 100KB).
 
