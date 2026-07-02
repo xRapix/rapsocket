@@ -1,4 +1,4 @@
-# 🚀 RapSocket v1
+# 🚀 RapSocket v2
 A lightweight, header-only, RAW C++ network library built directly on top of the Windows HTTP Services (WinHTTP) API. No external dependencies, no complex setups, no modern standard library bloat if you don't want it. Just include and send.
 
 ## ✨ Features
