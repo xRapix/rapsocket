@@ -64,3 +64,14 @@ int main(){
     std::string request = PostTextAndListen(L"YOUR_URL_HERE","Hello from rapsocket!",L"YOUR_USER_AGENT",deafult_https_port); 
 }
 ```
+## 📋NOTE
+You need to add flag when you are compiling your program with rapsock.hpp
+MinGW
+```
+-lwinhttp
+```
+MSVC
+```
+winhttp.lib
+```
+
