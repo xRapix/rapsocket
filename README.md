@@ -31,7 +31,7 @@ Here is what's coming next in the future versions of RapSocket:
 
 [x] v2.0.0 - Full GET request support – fetching data from any server.
 
-[X] v3.0.0 - No-STD / Pure Native WinAPI version – completely removing <string> and modern C++ standard library dependencies for malware analysts and low-level enthusiasts (executable size < 20KB).
+[x] v3.0.0 - No-STD / Pure Native WinAPI version – completely removing <string> and modern C++ standard library dependencies for malware analysts and low-level enthusiasts (executable size < 20KB).
 
 ## ⚙️ Installation
 Since RapSocket is a **header-only** library, setup takes exactly 5 seconds.
