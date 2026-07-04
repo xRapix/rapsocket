@@ -1,3 +1,15 @@
+/******************************************************************************
+ *  ██████╗  █████╗ ██████╗ ███████╗ ██████╗  ██████╗██╗  ██╗███████╗████████╗
+ *  ██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔═══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝
+ *  ██████╔╝███████║██████╔╝███████╗██║   ██║██║     █████╔╝ █████╗     ██║   
+ *  ██╔══██╗██╔══██║██╔═══╝ ╚════██║██║   ██║██║     ██╔═██╗ ██╔══╝     ██║   
+ *  ██║  ██║██║  ██║██║     ███████║╚██████╔╝╚██████╗██║  ██╗███████╗   ██║   
+ *  ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚══════╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   
+ *                                                                           
+ * Made by xRapix  
+ *****************************************************************************/
+
+
 
 #pragma once
 #include<windows.h>
@@ -5,8 +17,10 @@
 #include<string>
 #include <format>
 #include<iostream>
-#include"rapsocket.hpp"
+#include"rapsocket.hpp" 
 
+DWORD LastErr;
+#pragma comment(lib, "winhttp.lib")
 
 inline void PostTextAndForget(std::wstring URL,std::string text,std::wstring user_agent,int port){
     //Stripping url into 2 parts (winhttp needs host and path)
@@ -35,12 +49,23 @@ inline void PostTextAndForget(std::wstring URL,std::string text,std::wstring use
     std::wstring headers = L"Content-Type: application/json\r\n";
 
     HINTERNET hSession = WinHttpOpen(user_agent.c_str(), WINHTTP_ACCESS_TYPE_DEFAULT_PROXY, WINHTTP_NO_PROXY_NAME, WINHTTP_NO_PROXY_BYPASS, 0);
-    if (!hSession)return;
+    if (!hSession){
+        LastErr = GetLastError();
+        return;
+    }
 
     if (hSession){
         HINTERNET hconnect = WinHttpConnect(hSession,StrippedHOST.c_str(),port,0);
+        if (!hconnect){
+            LastErr = GetLastError();
+            return;
+        }
         if (hconnect){
             HINTERNET hRequest = WinHttpOpenRequest(hconnect,L"POST",StrippedPATH.c_str(),NULL, WINHTTP_NO_REFERER, WINHTTP_DEFAULT_ACCEPT_TYPES, WINHTTP_FLAG_SECURE);
+            if (!hRequest){
+                LastErr = GetLastError();
+                return;
+            }
             if (hRequest){
                 WinHttpSendRequest(hRequest,headers.c_str(),headers.length(),(LPVOID)postData.c_str(),postData.length(),postData.length(),0);
                 WinHttpReceiveResponse(hRequest,NULL);
